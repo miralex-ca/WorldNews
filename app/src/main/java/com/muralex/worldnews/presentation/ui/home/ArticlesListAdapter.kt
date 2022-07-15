@@ -1,6 +1,7 @@
 package com.muralex.worldnews.presentation.ui.home
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -19,7 +20,12 @@ class ArticlesListAdapter : ListAdapter<Article, ArticlesListAdapter.ViewHolder>
 
     class ViewHolder (private val binding: ArticleListitemBinding) : RecyclerView.ViewHolder (binding.root) {
         fun bind(item: Article, onItemClickListener: ((Action, Article) -> Unit)?) {
+
+            if (item.image.isEmpty()) binding.ivListImage.visibility = View.GONE
+
             binding.apply {
+
+                if (item.description.isEmpty()) tvDesc.text = item.author
                 tvTitle.text = item.title
                 tvDesc.text = item.description
                 ivListImage.setListItemImage(item.image)

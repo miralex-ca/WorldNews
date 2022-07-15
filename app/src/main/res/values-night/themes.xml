@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
 
     <color name="primaryColor">#FF968F</color>
@@ -23,7 +23,7 @@
     <color name="colorError">#FA6F65</color>
 
     <color name="colorBlackWeather">#A8A8A8</color>
-
-
+    <color name="colorSwipeBackground">#595858</color>
+    <color name="colorSplashBg">#595858</color>
 
 </resources>

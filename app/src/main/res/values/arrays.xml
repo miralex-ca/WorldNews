@@ -16,16 +16,27 @@
     <string-array name="countries_options_text">
         <item>USA</item>
         <item>Canada</item>
+        <item>United Kingdom</item>
         <item>France</item>
+        <item>Germany</item>
+        <item>Italy</item>
+        <item>Mexico</item>
+        <item>Brazil</item>
+
     </string-array>
 
     <string-array name="countries_options_values">
         <item>us</item>
         <item>ca</item>
+        <item>gb</item>
         <item>fr</item>
+        <item>de</item>
+        <item>it</item>
+        <item>mx</item>
+        <item>br</item>
+
     </string-array>
 
     <string name="countries_options_value_default">ca</string>
-
 
 </resources>

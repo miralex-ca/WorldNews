@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="colorSplashBg">#ffffff</color>
+
     <color name="primaryColor">#FF6D63</color>
     <color name="primaryLightColor">#FF837A</color>
     <color name="primaryDarkColor">#EA645A</color>
@@ -26,6 +28,8 @@
     <color name="colorBackground">#F8F8F8</color>
     <color name="colorSearchBackground">#FaFaFa</color>
 
+    <color name="colorSwipeBackground">@color/colorSurface</color>
+
     <color name="colorText">#444</color>
     <color name="colorTextDisabled">#7A444444</color>
     <color name="colorOnSurface">#111</color>
@@ -34,6 +38,6 @@
     <color name="colorOnError">#FFFFFF</color>
 
     <color name="colorBlackWeather">#696969</color>
-
+    <color name="colorImagePlaceholder">#178F8E8E</color>
 
 </resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_open"
+        android:icon="@drawable/ic_toolbar_open_browser"
+        android:title="@string/open_in_browser"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/action_refresh"
+        android:title="@string/refresh_page"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_toolbar_share"
+        android:title="@string/share"
+        app:showAsAction="never"
+        />
+</menu>

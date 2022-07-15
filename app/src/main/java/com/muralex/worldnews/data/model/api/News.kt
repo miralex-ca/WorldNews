@@ -1,26 +1,24 @@
 package com.muralex.worldnews.data.model.api
 
-import com.google.gson.annotations.SerializedName
-import com.muralex.worldnews.data.model.api.Source
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-data class News(
-
-    @SerializedName("author")
+@JsonClass(generateAdapter = true)
+data class News (
+    @Json(name = "author")
     val author: String?,
-    @SerializedName("content")
+    @Json(name = "content")
     val content: String?,
-    @SerializedName("description")
+    @Json(name = "description")
     val description: String?,
-    @SerializedName("publishedAt")
+    @Json(name = "publishedAt")
     val publishedAt: String?,
-    @SerializedName("source")
+    @Json(name = "source")
     val source: Source?,
-    @SerializedName("title")
+    @Json(name = "title")
     val title: String?,
-    @SerializedName("url")
+    @Json(name = "url")
     val url: String?,
-    @SerializedName("urlToImage")
+    @Json(name = "urlToImage")
     val urlToImage: String?
-
-
 )

@@ -6,10 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.muralex.worldnews.data.model.app.Article
 import com.muralex.worldnews.data.model.utils.Resource
 import com.muralex.worldnews.data.model.utils.Status
-import com.muralex.worldnews.domain.usecase.GetNewsUseCase
-import com.muralex.worldnews.domain.usecase.UpdateNewsUseCase
-import com.muralex.worldnews.presentation.utils.Constants.DEFAULT_COUNTRY
-import com.muralex.worldnews.presentation.utils.NetworkHelper
+import com.muralex.worldnews.domain.usecase.news.GetNewsUseCase
+import com.muralex.worldnews.domain.usecase.news.UpdateNewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,44 +18,47 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getNewsUseCase: GetNewsUseCase,
     private val updateNewsUseCase: UpdateNewsUseCase,
-    private val networkHelper: NetworkHelper
-        ): ViewModel() {
+) : ViewModel() {
 
-    private var country = DEFAULT_COUNTRY
+    private var country = COUNTRY_START
+
+    private var _startRefresh = true
+    val startRefresh: Boolean
+        get() = _startRefresh
+
     val viewState = MutableLiveData<ViewState>()
 
     fun getNews(country: String) {
-        var type = GET_TYPE
-        if (country != this.country) {
-            type = UPDATE_TYPE
-            setNewsCountry(country)
-        }
-        getData(type)
-
+        val fetchDataType = if (isDifferentCountry(country)) UPDATE_TYPE
+        else GET_TYPE
+        setNewsCountry(country)
+        getData(fetchDataType)
     }
 
-    fun updateNews() = getData( UPDATE_TYPE)
+    private fun isDifferentCountry(country: String): Boolean {
+        return if (this.country == COUNTRY_START) false
+        else country != this.country
+    }
+
+    fun updateNews() = getData(UPDATE_TYPE)
 
     private fun getData(type: Int) = viewModelScope.launch(Dispatchers.IO) {
+        _startRefresh = false
         viewState.postValue(ViewState.Loading)
-        try{
-            if (networkHelper.isNetworkConnected()) {
-                val response = getDataFromUseCase(type)
-                when (response.status) {
-                    Status.SUCCESS -> viewState.postValue(ViewState.ListLoaded(response))
-                    Status.ERROR -> {
-                        val message =  response.message ?: "Error"
-                        viewState.postValue(ViewState.ListLoadFailure(message) )
-                    }
-                    else -> {
-                        viewState.postValue(ViewState.Initial)
-                    }
+        try {
+            val response = getDataFromUseCase(type)
+
+            when (response.status) {
+                Status.LOADING -> viewState.postValue(ViewState.Loading)
+                Status.ERROR -> viewState.postValue(ViewState.ListLoadFailure(response))
+                Status.SUCCESS -> {
+                    if (type == GET_TYPE) viewState.postValue(ViewState.ListLoaded(response))
+                    else viewState.postValue(ViewState.ListRefreshed(response))
                 }
-            }else{
-                viewState.postValue(ViewState.ListLoadFailure("No internet connection") )
             }
-        }catch (e: Exception){
-            viewState.postValue(ViewState.ListLoadFailure(e.message.toString()) )
+        } catch (e: Exception) {
+            val resource = Resource.error(e.message.toString(), null)
+            viewState.postValue(ViewState.ListLoadFailure(resource))
         }
     }
 
@@ -65,21 +66,22 @@ class HomeViewModel @Inject constructor(
         this.country = country
     }
 
-
     private suspend fun getDataFromUseCase(type: Int): Resource<List<Article>> {
-        return  if (type == UPDATE_TYPE) updateNewsUseCase()
+        return if (type == UPDATE_TYPE) updateNewsUseCase()
         else getNewsUseCase()
     }
 
     private companion object {
         const val UPDATE_TYPE = 1
         const val GET_TYPE = 2
+        const val COUNTRY_START = "unknown"
     }
 
     sealed class ViewState {
-        object Initial: ViewState()
-        object Loading: ViewState()
-        data class ListLoaded(val data: Resource<List<Article>>): ViewState()
-        data class ListLoadFailure(val errorMessage: String): ViewState()
+        object Loading : ViewState()
+        data class ListLoaded(val data: Resource<List<Article>>) : ViewState()
+        data class ListRefreshed(val data: Resource<List<Article>>) : ViewState()
+        data class ListLoadFailure(val data: Resource<List<Article>>) : ViewState()
     }
+
 }

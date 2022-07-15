@@ -8,5 +8,6 @@ data class Article(
     val description: String,
     val text: String,
     val url: String,
-    val image: String
+    val image: String,
+    val author: String
 ) : Serializable

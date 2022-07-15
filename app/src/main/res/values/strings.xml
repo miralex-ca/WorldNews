@@ -2,7 +2,7 @@
     <string name="app_name">WorldNews</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_title">WorldNews</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -15,5 +15,40 @@
     <string name="dark_mode_system">dark_mode_system</string>
     <string name="dark_mode_disabled">dark_mode_disabled</string>
     <string name="dark_mode_title">Dark Mode</string>
+
+    <string name="no_mail_client">No mail client</string>
+    <string name="text_share">Share</string>
+    <string name="text_share_app">Share this app</string>
+    <string name="share_url">Hi! Check this link: \n</string>
+    <string name="snackbar_close">CLOSE</string>
+    <string name="load_error_message">Unable to update news for %s \nError occurred: %s</string>
+    <string name="title_news">News</string>
+    <string name="title_news_country">News: %s</string>
+    <string name="settings_theme_title">Theme</string>
+    <string name="settings_updates_title">News updates</string>
+    <string name="settings_country_dialog_title">Selected Country</string>
+    <string name="settings_country_summary">Current: %s</string>
+    <string name="settings_country_title">Select country</string>
+    <string name="refresh_list">Refresh news</string>
+    <string name="select_country">Select country</string>
+    <string name="dialog_country_title">Select country</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="open_in_browser">Open in browser</string>
+    <string name="refresh_page">Refresh page</string>
+    <string name="share">Share</string>
+    <string name="article_image">Article image</string>
+    <string name="open_source">Open source</string>
+    <string name="add_to_favorite">Add to favorite</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="settings_title">Settings</string>
+    <string name="bookmarks_title">Bookmarks</string>
+    <string name="remove_from_bookmarks">Delete bookmark</string>
+    <string name="remove_bookmark">Remove bookmark</string>
+    <string name="start_refresh_summary_off">News are not updated when application starts</string>
+    <string name="start_refresh_summary_on">News are updated when application starts</string>
+    <string name="start_refresh_title">Refresh on start</string>
+    <string name="swipe_down_summary_on">Swipe the news list down to update</string>
+    <string name="swipe_down_summary_off">Swipe down the news list is disabled</string>
+    <string name="swipe_down_title">Swipe down to refresh</string>
 
 </resources>

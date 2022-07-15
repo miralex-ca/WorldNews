@@ -11,11 +11,8 @@ interface NewsApiService {
     suspend fun getHeadlines(
         @Query("country")
         country: String,
-//        @Query("apiKey")
-//        apiKey: String,
         @Query("pageSize")
-        pageSize: Int = 30
+        pageSize: Int = 40
     ): Response<NewsApiResponse>
-
 
 }

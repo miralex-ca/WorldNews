@@ -1,13 +1,16 @@
 package com.muralex.worldnews.data.model.api
 
-import com.google.gson.annotations.SerializedName
 
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class NewsApiResponse (
-    @SerializedName("articles")
+    @Json(name = "articles")
     val articles: List<News>,
-    @SerializedName("status")
+    @Json(name = "status")
     val status: String,
-    @SerializedName("totalResults")
+    @Json(name = "totalResults")
     val totalResults: Int,
 
     )
