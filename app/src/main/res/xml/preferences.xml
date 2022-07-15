@@ -1,0 +1,35 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="Theme">
+
+        <ListPreference
+            app:defaultValue="@string/dark_mode_disabled"
+            app:entries="@array/night_mode_entries"
+            app:entryValues="@array/night_mode_values"
+            app:iconSpaceReserved="false"
+            app:key="@string/dark_mode_key"
+            app:title="@string/dark_mode_title"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="Countries">
+
+        <ListPreference
+            android:defaultValue="@string/countries_options_value_default"
+            android:key="selected_country"
+            android:dialogTitle="Selected Country"
+            android:entries="@array/countries_options_text"
+            android:entryValues="@array/countries_options_values"
+            android:summary="Current: %s"
+            android:title="Select country"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

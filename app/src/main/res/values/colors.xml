@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="primaryColor">#FF6D63</color>
+    <color name="primaryLightColor">#FF837A</color>
+    <color name="primaryDarkColor">#EA645A</color>
+    <!-- navbar-->
+    <color name="nav_bar_start">#DF5247</color>
+    <color name="nav_bar_end">#FF837A</color>
+    <!-- accents-->
+    <color name="secondaryColor">#FD6358</color>
+    <color name="secondaryLightColor">#FF7F76</color>
+    <color name="secondaryDarkColor">#F35045</color>
+
+    <color name="primaryTextColor">#FFFFFF</color>
+    <color name="secondaryTextColor">#FFFFFF</color>
+
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorBackground">#F8F8F8</color>
+    <color name="colorSearchBackground">#FaFaFa</color>
+
+    <color name="colorText">#444</color>
+    <color name="colorTextDisabled">#7A444444</color>
+    <color name="colorOnSurface">#111</color>
+    <color name="colorOnBackground">@color/colorOnSurface</color>
+    <color name="colorError">#FF3B2D</color>
+    <color name="colorOnError">#FFFFFF</color>
+
+    <color name="colorBlackWeather">#696969</color>
+
+
+</resources>

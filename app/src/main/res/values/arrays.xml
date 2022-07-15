@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="night_mode_entries">
+        <item>Enabled</item>
+        <item>Disabled</item>
+        <item>System Default</item>
+    </string-array>
+
+    <string-array name="night_mode_values">
+        <item>@string/dark_mode_enabled</item>
+        <item>@string/dark_mode_disabled</item>
+        <item>@string/dark_mode_system</item>
+    </string-array>
+
+    <string-array name="countries_options_text">
+        <item>USA</item>
+        <item>Canada</item>
+        <item>France</item>
+    </string-array>
+
+    <string-array name="countries_options_values">
+        <item>us</item>
+        <item>ca</item>
+        <item>fr</item>
+    </string-array>
+
+    <string name="countries_options_value_default">ca</string>
+
+
+</resources>

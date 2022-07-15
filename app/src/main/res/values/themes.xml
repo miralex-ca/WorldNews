@@ -1,0 +1,66 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <attr name="colorTextPrimary" format="reference" />
+    <attr name="colorTextPrimaryDisabled" format="reference" />
+    <attr name="appBarOverlay" format="reference" />
+    <attr name="popupOverlay" format="reference" />
+    <attr name="searchBackground" format="reference" />
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
+        <item name="colorOnSecondary">@color/secondaryTextColor</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="colorOnError">@color/colorOnError</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="android:textViewStyle">@style/App.TextView</item>
+        <item name="colorTextPrimary">@color/colorText</item>
+        <item name="colorTextPrimaryDisabled">@color/colorTextDisabled</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorOnBackground">@color/colorOnBackground</item>
+        <item name="appBarOverlay">@style/AppTheme.AppBarOverlay</item>
+        <item name="popupOverlay">@style/AppTheme.PopupOverlay</item>
+
+        <item name="preferenceTheme">@style/AppTheme.CustomPreferenceThemeOverlay</item>
+
+    </style>
+
+    <style name="App.TextView" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/color_text</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="AppTheme.CustomPreferenceThemeOverlay" parent="PreferenceThemeOverlay.v14.Material">
+        <item name="preferenceFragmentCompatStyle">@style/AppPreferenceFragmentCompatStyle</item>
+    </style>
+
+    <style name="AppPreferenceFragmentCompatStyle">
+        <item name="android:layout">@layout/pref_screen</item>
+        <!-- item name="android:divider">?attr/settingsDivider</item -->
+    </style>
+
+
+
+</resources>
