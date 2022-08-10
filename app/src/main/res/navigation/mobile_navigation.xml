@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.muralex.worldnews.presentation.ui.home.HomeFragment"
+        android:name="com.muralex.worldnews.presentation.fragments.home.HomeFragment"
         android:label="@string/menu_home"
         >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.muralex.worldnews.presentation.ui.detail.DetailFragment"
+        android:name="com.muralex.worldnews.presentation.fragments.detail.DetailFragment"
         android:label="" >
         <argument
             android:name="selected_article"
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/nav_bookmarks"
-        android:name="com.muralex.worldnews.presentation.ui.bookmarks.BookmarksFragment"
+        android:name="com.muralex.worldnews.presentation.fragments.bookmarks.BookmarksFragment"
         android:label="@string/bookmarks_title" >
         <action
             android:id="@+id/action_bookmarksFragment_to_detailFragment"
@@ -51,12 +51,12 @@
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.muralex.worldnews.presentation.ui.settings.SettingsFragment"
+        android:name="com.muralex.worldnews.presentation.fragments.settings.SettingsFragment"
         android:label="@string/settings_title" />
 
     <fragment
         android:id="@+id/webDetailFragment"
-        android:name="com.muralex.worldnews.presentation.ui.webdetail.WebDetailFragment"
+        android:name="com.muralex.worldnews.presentation.fragments.webdetail.WebDetailFragment"
         android:label="" >
         <argument
             android:name="selected_article"

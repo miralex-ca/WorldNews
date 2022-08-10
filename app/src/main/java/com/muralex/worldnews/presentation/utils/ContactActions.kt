@@ -6,9 +6,8 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.core.app.ShareCompat
-import androidx.core.content.ContextCompat.startActivity
 import com.muralex.worldnews.R
-import com.muralex.worldnews.presentation.utils.Constants.CONTACT_EMAIL
+import com.muralex.worldnews.app.utils.Constants.CONTACT_EMAIL
 import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 

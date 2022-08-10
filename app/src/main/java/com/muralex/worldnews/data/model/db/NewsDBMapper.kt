@@ -1,7 +1,7 @@
 package com.muralex.worldnews.data.model.db
 
 import com.muralex.worldnews.data.model.app.Article
-import com.muralex.worldnews.data.model.utils.EntityMapper
+import com.muralex.worldnews.app.data.EntityMapper
 import javax.inject.Inject
 
 class NewsDBMapper @Inject constructor(): EntityMapper<NewsDBData, Article> {

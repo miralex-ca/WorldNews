@@ -1,6 +1,5 @@
 package com.muralex.worldnews.data.model.app
 
-import android.accounts.AuthenticatorDescription
 import java.io.Serializable
 
 data class Article(

@@ -37,6 +37,9 @@
         <item name="preferenceTheme">@style/AppTheme.CustomPreferenceThemeOverlay</item>
         <item name="alertDialogTheme">@style/AppTheme.AlertDialogTheme</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
+
+
     </style>
 
     <style name="App.TextView" parent="@android:style/Widget.TextView">

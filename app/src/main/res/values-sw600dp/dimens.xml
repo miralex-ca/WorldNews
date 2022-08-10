@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="card_max_width">@dimen/_300sdp</dimen>
+</resources>

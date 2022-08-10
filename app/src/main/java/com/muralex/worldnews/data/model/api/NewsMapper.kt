@@ -1,8 +1,7 @@
 package com.muralex.worldnews.data.model.api
 
-import com.muralex.worldnews.data.model.app.Article
 import com.muralex.worldnews.data.model.db.NewsDBData
-import com.muralex.worldnews.data.model.utils.EntityMapper
+import com.muralex.worldnews.app.data.EntityMapper
 
 class NewsMapper : EntityMapper<News, NewsDBData> {
 

@@ -51,4 +51,9 @@
     <string name="swipe_down_summary_off">Swipe down the news list is disabled</string>
     <string name="swipe_down_title">Swipe down to refresh</string>
 
+    <string name="error_msg_service_error">Service error</string>
+    <string name="error_msg_connection_error">Connection error</string>
+    <string name="error_msg_request_error">Data not received</string>
+    <string name="error_msg_generic_error">Unexpected error</string>
+
 </resources>

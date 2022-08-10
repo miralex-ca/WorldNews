@@ -1,7 +1,7 @@
 package com.muralex.worldnews.domain.repository
 
 import com.muralex.worldnews.data.model.app.Article
-import com.muralex.worldnews.data.model.utils.Resource
+import com.muralex.worldnews.app.data.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface FavoriteRepository {
