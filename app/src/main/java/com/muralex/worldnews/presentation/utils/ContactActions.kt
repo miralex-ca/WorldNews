@@ -25,7 +25,7 @@ class ContactActions @Inject constructor(
     }
 
     fun rateApp() {
-        sendEmail()
+        sendEmailWithData(context.getString(R.string.five_star_feedback), "")
     }
 
     fun shareApp() {

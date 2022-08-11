@@ -52,6 +52,13 @@ class HomeViewModelTest : BaseUnitTest() {
     }
 
     @Test
+    fun startRefresh_afterUpdateNews_isFalse() {
+        mockSuccessfulCase()
+        SUT.updateNews()
+        assertThat(SUT.startRefresh).isFalse()
+    }
+
+    @Test
     fun differentCountry_updateUseCaseInvoke() {
         mockSuccessfulCase()
         SUT.setNewsCountry("test")
@@ -116,7 +123,6 @@ class HomeViewModelTest : BaseUnitTest() {
     private fun mockErrorCase() {
         coEvery { getNewsUseCase() } returns expectedError
         coEvery { updateNewsUseCase() } returns expectedError
-
         SUT = HomeViewModel(getNewsUseCase, updateNewsUseCase)
     }
 

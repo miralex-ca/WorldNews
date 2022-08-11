@@ -1,6 +1,7 @@
 package com.muralex.worldnews.presentation.fragments.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -14,10 +15,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.muralex.worldnews.R
-import com.muralex.worldnews.app.utils.Constants
+import com.muralex.worldnews.app.utils.*
 import com.muralex.worldnews.app.utils.Constants.ARTICLE_URL
-import com.muralex.worldnews.app.utils.ResourceProvider
-import com.muralex.worldnews.app.utils.SettingsHelper
 import com.muralex.worldnews.data.model.app.Article
 import com.muralex.worldnews.databinding.FragmentHomeBinding
 import com.muralex.worldnews.presentation.dialogs.CountryDialogFragment
@@ -130,7 +129,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupSwipeRefresh() {
-
         binding.swipeRefreshLayout.apply {
 
             isEnabled = settingsHelper.isSwipeDownEnabled()
@@ -160,18 +158,24 @@ class HomeFragment : Fragment() {
         viewModel.viewState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is ViewState.Loading -> showProgressBar()
+                is ViewState.EmptyList -> {
+                    hideProgressBar(true)
+                }
                 is ViewState.ListLoadFailure -> {
                     hideProgressBar(true)
-                    val message = resourceProvider.getErrorMessage(state.data.getErrorType())
-                    displayErrorNotification(message)
+                    displayErrorNotification(state.data.getErrorType())
                     refreshListAndTitle(state.data.data)
                 }
+
                 is ViewState.ListLoaded -> {
                     hideProgressBar(false)
+                    notEmptyUI()
                     refreshListAndTitle(state.data.data)
                 }
+
                 is ViewState.ListRefreshed -> {
                     hideProgressBar(true)
+                    notEmptyUI()
                     saveUpdatedCountry()
                     refreshListAndTitle(state.data.data)
                 }
@@ -181,8 +185,19 @@ class HomeFragment : Fragment() {
 
     private fun refreshListAndTitle(data: List<Article>?) {
         listAdapter.submitList(data)
-
         setToolbarTitle()
+        if (data.isNullOrEmpty()) emptyUI()
+        else notEmptyUI()
+    }
+
+    private fun emptyUI() {
+        binding.emptyNewsList.visible()
+        binding.rvList.gone()
+    }
+
+    private fun notEmptyUI() {
+        binding.emptyNewsList.gone()
+        binding.rvList.visible()
     }
 
     private fun saveUpdatedCountry() {
@@ -199,9 +214,11 @@ class HomeFragment : Fragment() {
         } else ""
     }
 
-    private fun displayErrorNotification(message: String) {
-        val country = settingsHelper.getCountryName()
+    private fun displayErrorNotification(errorType: Constants.DataErrors) {
 
+        val message = resourceProvider.getErrorMessage(errorType)
+
+        val country = settingsHelper.getCountryName()
         val text: String = getString(R.string.load_error_message, country, message)
         val notification = Snackbar.make(
             binding.root,

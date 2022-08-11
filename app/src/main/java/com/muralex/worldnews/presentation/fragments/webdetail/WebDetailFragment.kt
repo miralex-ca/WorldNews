@@ -11,6 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.muralex.worldnews.R
+import com.muralex.worldnews.app.utils.NetworkHelper
+import com.muralex.worldnews.app.utils.displayIf
+import com.muralex.worldnews.app.utils.gone
+import com.muralex.worldnews.app.utils.visible
 import com.muralex.worldnews.databinding.FragmentWebDetailBinding
 import com.muralex.worldnews.presentation.activity.TempToolbarTitleListener
 import com.muralex.worldnews.presentation.fragments.detail.DetailFragmentArgs
@@ -24,13 +28,15 @@ import javax.inject.Inject
 class WebDetailFragment : Fragment() {
     private var _binding: FragmentWebDetailBinding? = null
     private val binding get() = _binding!!
-
-    private val args : DetailFragmentArgs by navArgs()
-
+    private val args: DetailFragmentArgs by navArgs()
     private var webView: WebView? = null
+    private var title = ""
+
     @Inject
     lateinit var contactActions: ContactActions
-    private var title = ""
+
+    @Inject
+    lateinit var networkHelper: NetworkHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +49,6 @@ class WebDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val article = args.selectedArticle
         webView = binding.webview
         title = article.source
@@ -79,7 +84,7 @@ class WebDetailFragment : Fragment() {
         }
 
         binding.webview.settings.javaScriptEnabled = true
-        binding.webview.loadUrl(url)
+        loadUrl(url)
     }
 
 
@@ -106,12 +111,25 @@ class WebDetailFragment : Fragment() {
                     else -> false
                 }
             }
-        }, viewLifecycleOwner )
+        }, viewLifecycleOwner)
     }
 
     private fun refreshPage(url: String) {
-        binding.loaderProgress.visibility = View.VISIBLE
-        binding.webview.loadUrl(url)
+        binding.loaderProgress.visible()
+        loadUrl(url)
+    }
+
+    private fun loadUrl(url: String) {
+        if (!networkHelper.isNetworkConnected()) {
+            binding.webview.gone()
+            binding.loaderProgress.gone()
+            binding.boxWifiOff.visible()
+
+        } else {
+            binding.webview.visible()
+            binding.boxWifiOff.gone()
+            binding.webview.loadUrl(url)
+        }
     }
 
     private fun destroyWebView() {
@@ -131,8 +149,6 @@ class WebDetailFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 
     override fun onDestroy() {
         super.onDestroy()

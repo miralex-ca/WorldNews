@@ -20,7 +20,7 @@ class SettingsHelper (private val context: Context) {
         val default = context.getString(R.string.countries_options_value_default)
         var timeOption = default
         settings?.let {
-            timeOption = it.getString("selected_country", default).toString()
+            timeOption = it.getString(context.getString(R.string.selected_country_key), default).toString()
         }
         return timeOption
     }
@@ -34,7 +34,7 @@ class SettingsHelper (private val context: Context) {
     fun setSelectedCountry(country: String)  {
         val sharedPref = settings ?: return
         with (sharedPref.edit()) {
-            putString( "selected_country", country)
+            putString( context.getString(R.string.selected_country_key), country)
             apply()
         }
     }
@@ -49,19 +49,19 @@ class SettingsHelper (private val context: Context) {
 
     fun isStartRefreshEnabled() : Boolean {
         val default = true
-        return settings?.getBoolean( "start_refresh", default) ?: default
+        return settings?.getBoolean( context.getString(R.string.swipe_refresh_key), default) ?: default
     }
 
     fun isSwipeDownEnabled() : Boolean {
         val default = true
-        return settings?.getBoolean( "swipe_refresh", default) ?: default
+        return settings?.getBoolean( context.getString(R.string.swipe_refresh_key), default) ?: default
     }
 
     fun getLastUpdateCountry() : String {
         val default = ""
         var country = default
         settings?.let {
-            country = it.getString("updated_country", default).toString()
+            country = it.getString(context.getString(R.string.updated_country_key), default).toString()
         }
         return country
     }
@@ -69,7 +69,7 @@ class SettingsHelper (private val context: Context) {
     fun setLastUpdateCountry(country: String)  {
         val sharedPref = settings ?: return
         with (sharedPref.edit()) {
-            putString( "updated_country", country)
+            putString( context.getString(R.string.updated_country_key), country)
             apply()
         }
     }

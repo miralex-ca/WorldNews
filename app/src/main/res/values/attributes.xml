@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorTextPrimary" format="reference" />
+    <attr name="colorTextPrimaryDisabled" format="reference" />
+    <attr name="appBarOverlay" format="reference" />
+    <attr name="popupOverlay" format="reference" />
+    <attr name="searchBackground" format="reference" />
+    <attr name="colorStarIcon" format="reference" />
+    <attr name="colorStarIconBord" format="reference" />
+</resources>

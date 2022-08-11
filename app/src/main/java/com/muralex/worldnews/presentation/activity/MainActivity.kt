@@ -67,10 +67,12 @@ class MainActivity : AppCompatActivity(), TempToolbarTitleListener,
         val selectItem = true
         when (item.itemId) {
             R.id.nav_home -> navController.popBackStack(R.id.nav_home, false)
+
             R.id.nav_bookmarks -> {
                 navController.popBackStack(R.id.nav_home, false)
                 navController.navigate(R.id.nav_bookmarks, null, getNavOptions())
             }
+
             else -> NavigationUI.onNavDestinationSelected(item, navController)
         }
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string-array name="night_mode_values" tools:ignore="InconsistentArrays">
+        <item>@string/dark_mode_enabled</item>
+        <item>@string/dark_mode_disabled</item>
+        <item>@string/dark_mode_system</item>
+    </string-array>
+
+    <string-array name="night_mode_entries" tools:ignore="InconsistentArrays">
+        <item>Enabled</item>
+        <item>Disabled</item>
+        <item>System Default</item>
+    </string-array>
+
+</resources>

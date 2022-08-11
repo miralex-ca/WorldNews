@@ -17,7 +17,6 @@ class RepositoryImpl(
     override suspend fun getNewsArticles() = getNewsArticlesFromCache()
 
     override suspend fun updateNewsArticles(): Resource<List<Article>> {
-
         val update = getFromAPIAndSaveToDB()
         var articles = newsLocalDataSource.getNewsFromDB()
 
@@ -28,7 +27,6 @@ class RepositoryImpl(
                 setInfo(update.getInfo())
             }
         }
-
         return articles
     }
 
@@ -37,19 +35,16 @@ class RepositoryImpl(
     }
 
     private suspend fun getArticlesFromDB(): Resource<List<Article>> {
-
         var news = newsLocalDataSource.getNewsFromDB()
         if (news.data.isNullOrEmpty()) {
             getFromAPIAndSaveToDB()
             news = newsLocalDataSource.getNewsFromDB()
         }
         return news
-
     }
 
     private suspend fun getFromAPIAndSaveToDB(): Resource<List<NewsDBData>> {
         val updatedList = getNewsDataFromApi()
-
         if (updatedList.isSuccess() && !updatedList.data.isNullOrEmpty()) {
             newsLocalDataSource.clearAll()
             newsLocalDataSource.saveNewsToDB(updatedList.data)

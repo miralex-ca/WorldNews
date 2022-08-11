@@ -26,18 +26,21 @@ class BookmarksViewModel @Inject constructor(
     }
 
     fun getNews() = viewModelScope.launch(Dispatchers.IO) {
-        viewState.postValue(ViewState.Loading)
         getFavoriteUseCase().collect{ response ->
             when (response.status) {
                 Status.LOADING -> viewState.postValue(ViewState.Loading)
                 Status.ERROR -> viewState.postValue(ViewState.ListLoadFailure(response))
-                Status.SUCCESS -> viewState.postValue(ViewState.ListLoaded(response))
+                Status.SUCCESS -> {
+                    if (response.data?.isEmpty() == true)  viewState.postValue(ViewState.EmptyList)
+                    else viewState.postValue(ViewState.ListLoaded(response))
+                }
             }
         }
     }
 
     sealed class ViewState {
         object Loading : ViewState()
+        object EmptyList : ViewState()
         data class ListLoaded(val data: Resource<List<Article>>) : ViewState()
         data class ListLoadFailure(val data: Resource<List<Article>>) : ViewState()
     }
