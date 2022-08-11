@@ -1,43 +1,54 @@
 package com.muralex.worldnews.domain.usecase.favorites
 
+import com.google.common.truth.Truth
 import com.google.common.truth.Truth.assertThat
+import com.muralex.worldnews.app.data.Resource
 import com.muralex.worldnews.data.model.app.Article
 import com.muralex.worldnews.domain.repository.FavoriteRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.test.runTest
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
-
+import org.mockito.kotlin.mock
 
 @ExperimentalCoroutinesApi
-class CheckFavoriteUseCaseTest {
+class GetFavoriteUseCaseTest {
 
-    private lateinit var SUT : CheckFavoriteUseCase
+    private lateinit var SUT : GetFavoriteUseCase
     private val repository: FavoriteRepository = mockk()
-    private val testArticle: Article = mockk()
-    private val expectedData: Boolean = true
+    private val expectedData: Resource<List<Article>> = mockk()
 
     @Before
     fun setUp() {
-        SUT =  CheckFavoriteUseCase(repository)
-        coEvery { repository.checkFavorite(testArticle) } returns flowOf(expectedData)
+        SUT =  GetFavoriteUseCase(repository)
+        coEvery { repository.getFavoritesList() } returns flowOf( expectedData )
     }
 
     @Test
-    fun updateNewsUseCase_invoke_repositoryGetNews() = runTest {
-        SUT.invoke(testArticle)
-        coVerify { repository.checkFavorite(testArticle)}
+    fun getFavoriteUseCase_invoke_repositoryGetFavoritesList() = runTest {
+        SUT.invoke()
+        coVerify { repository.getFavoritesList()}
     }
 
     @Test
-    fun getNewsUseCase_invoke_expectedDataFromRepository() = runTest {
-        val item = SUT.invoke(testArticle).last()
+    fun getFavoriteUseCase_invoke_getExpectedData() = runTest {
+        val item = SUT.invoke().last()
         assertThat(item).isEqualTo(expectedData)
     }
+
+
+
+
+
+
+
+
+
+
 }

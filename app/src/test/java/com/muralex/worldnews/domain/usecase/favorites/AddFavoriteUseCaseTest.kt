@@ -22,11 +22,11 @@ class AddFavoriteUseCaseTest  {
     @Before
     fun setUp() {
         SUT =  AddFavoriteUseCase(repository)
-        coEvery { SUT.invoke(testArticle) } returns Unit
+        coEvery { repository.addToFavorite(testArticle) } returns Unit
     }
 
     @Test
-    fun updateNewsUseCase_invoke_repositoryGetNews() = runTest {
+    fun addFavoriteUseCase_invoke_repositoryGetNews() = runTest {
         SUT.invoke(testArticle)
         coVerify { repository.addToFavorite(testArticle)}
     }

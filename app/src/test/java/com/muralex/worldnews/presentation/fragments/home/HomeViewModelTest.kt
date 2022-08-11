@@ -23,7 +23,8 @@ class HomeViewModelTest : BaseUnitTest() {
     private val expectedError = Resource.error("msg", articlesList)
     private val observer =
         mockk<Observer<HomeViewModel.ViewState>> { every { onChanged(any()) } just Runs }
-    
+
+
     @Test
     fun getNews_getUseCaseInvoke() {
         mockSuccessfulCase()

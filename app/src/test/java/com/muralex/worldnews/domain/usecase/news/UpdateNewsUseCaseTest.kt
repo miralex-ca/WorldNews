@@ -24,7 +24,6 @@ class UpdateNewsUseCaseTest {
     @Before
     fun setUp() {
         SUT =  UpdateNewsUseCase(repository, mapper)
-
         coEvery { mapper.mapFromEntity(any()) } returns expectedData
         coEvery { repository.updateNewsArticles() } returns expectedData
     }
