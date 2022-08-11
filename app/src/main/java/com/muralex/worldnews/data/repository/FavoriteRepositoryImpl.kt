@@ -8,21 +8,21 @@ import com.muralex.worldnews.domain.repository.FavoriteRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class FavoriteRepositoryImpl (
+class FavoriteRepositoryImpl(
     private val dao: FavoriteDao,
-    private val mapper: FavoriteToArticleMapper
+    private val mapper: FavoriteToArticleMapper,
 ) : FavoriteRepository {
 
     override suspend fun checkFavorite(article: Article): Flow<Boolean> {
-        return  dao.checkFavorite(article.url).map { it > 0 }
+        return dao.checkFavorite(article.url).map { it > 0 }
     }
 
     override suspend fun getFavoritesList(): Flow<Resource<List<Article>>> {
-        return  dao.getAllFavorites().map {
-                Resource.success(
-                   mapper.mapFromEntityList(it).asReversed()
-                )
-            }
+        return dao.getAllFavorites().map {
+            Resource.success(
+                mapper.mapFromEntityList(it).asReversed()
+            )
+        }
     }
 
     override suspend fun addToFavorite(article: Article) {

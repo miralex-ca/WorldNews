@@ -44,6 +44,12 @@ android {
         viewBinding true
     }
 
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
 }
 
 dependencies {
@@ -67,6 +73,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     kapt 'com.github.bumptech.glide:compiler:4.13.0'
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'

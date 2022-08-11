@@ -40,4 +40,7 @@
     <color name="colorBlackWeather">#696969</color>
     <color name="colorImagePlaceholder">#178F8E8E</color>
 
+    <color name="colorStarIcon">#FDF223</color>
+    <color name="colorStarIconBord">#77FAD415</color>
+
 </resources>

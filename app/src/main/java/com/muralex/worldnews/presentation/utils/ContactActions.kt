@@ -16,12 +16,16 @@ class ContactActions @Inject constructor(
     @ActivityContext private val context: Context,
 ) {
 
-    fun sendFeedback() = sendEmail()
+    fun sendFeedback() {
+        sendEmailWithData(context.getString(R.string.feedback_subject), "")
+    }
 
-    fun sendReport() = sendEmail()
+    fun sendReport() {
+        sendEmailWithData(context.getString(R.string.error_report_subject), "")
+    }
 
     fun rateApp() {
-        goToPlayStore("")
+        sendEmail()
     }
 
     fun shareApp() {
@@ -41,10 +45,14 @@ class ContactActions @Inject constructor(
     }
 
     private fun sendEmail() {
+        sendEmailWithData("", "")
+    }
+
+    fun sendEmailWithData(subject: String, body: String) {
         val i = Intent(Intent.ACTION_SENDTO)
         val mailto = "mailto:" + CONTACT_EMAIL +
-                "?subject=" + Uri.encode("") +
-                "&body=" + Uri.encode("")
+                "?subject=" + Uri.encode(subject) +
+                "&body=" + Uri.encode(body)
         i.data = Uri.parse(mailto)
         try {
             context.startActivity(Intent.createChooser(i, ""))
@@ -77,8 +85,6 @@ class ContactActions @Inject constructor(
             Toast.makeText(context, context.getString(R.string.no_mail_client), Toast.LENGTH_SHORT).show()
             e.printStackTrace()
         }
-
     }
-
 
 }

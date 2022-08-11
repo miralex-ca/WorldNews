@@ -56,4 +56,27 @@
     <string name="error_msg_request_error">Data not received</string>
     <string name="error_msg_generic_error">Unexpected error</string>
 
+    <string name="send_feedback">Send feedback</string>
+    <string name="report_error">Report an error</string>
+    <string name="share_app">Share app</string>
+    <string name="rate_app">Rate the app</string>
+    <string name="contacts_title">Contacts</string>
+    <string name="nav_contacts">Contacts</string>
+    <string name="error_report_subject">Error report</string>
+    <string name="feedback_subject">Feedback about your app</string>
+
+    <string name="rate_request_txt">Please rate our app and help \nus to improve it! </string>
+    <string name="rating_feedback_hint">Please let us know what we can do to improve our app!</string>
+    <string name="rating_feedback_type">Type here</string>
+    <string name="rate_the_app_title">Rate the app</string>
+    <string name="rate_later_btn">Rate later</string>
+    <string name="send_rate_title">Rating</string>
+    <string name="submit_rate_btn_txt">Submit</string>
+    <string name="send_rate_feedback_btn">Send feedback</string>
+    <string name="contact_share">Recommend this app</string>
+    <string name="share_chooser_title">Recommend</string>
+    <string name="nav_share_txt">Share App</string>
+    <string name="share_advise_msg">Hi! I like this app and I thought it might help you: \n</string>
+    <string name="rating_star">Rating Star</string>
+
 </resources>

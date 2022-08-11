@@ -7,13 +7,18 @@
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_bookmark_swipe.xml" value="0.1" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_btn_open.xml" value="0.1" />
+        <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_contact_rate.xml" value="0.3005" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_contact_share.xml" value="0.24" />
+        <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_error_load.xml" value="0.1385" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_menu_camera.xml" value="0.1" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.1" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.1" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_nav_bookmarks.xml" value="0.1" />
+        <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_nav_contacts.xml" value="0.3005" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_nav_home.xml" value="0.1385" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_news.xml" value="0.1385" />
+        <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_star_borded.xml" value="0.1345" />
+        <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_star_borded_inactive.xml" value="0.2925" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_toolbar_open_browser.xml" value="0.24" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_toolbar_share.xml" value="0.24" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/drawable/ic_toolbar_star.xml" value="0.1" />
@@ -24,13 +29,16 @@
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/app_bar_main.xml" value="0.1897644927536232" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/article_listitem.xml" value="0.1897644927536232" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/content_main.xml" value="0.1519756838905775" />
+        <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/fragment_contacts.xml" value="0.3182291666666667" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/fragment_detail.xml" value="0.1" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/fragment_gallery.xml" value="0.3223958333333333" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/fragment_home.xml" value="0.1897644927536232" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/fragment_slideshow.xml" value="0.3223958333333333" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/fragment_web_detail.xml" value="0.1897644927536232" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/ic_btn_open.xml" value="0.1897644927536232" />
-        <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/list_item_favorite.xml" value="0.3159509202453988" />
+        <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/include_rate_star.xml" value="0.3182291666666667" />
+        <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/list_item_article.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/list_item_favorite.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/nav_header_main.xml" value="0.1897644927536232" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/layout/pref_screen.xml" value="0.1" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/menu/activity_main_drawer.xml" value="0.3125" />
@@ -38,6 +46,7 @@
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/menu/menu_actions.xml" value="0.31743589743589745" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/menu/menu_detail.xml" value="0.3125" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/menu/menu_home.xml" value="0.3223958333333333" />
+        <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/menu/menu_webdetail.xml" value="0.3182291666666667" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1385" />
         <entry key="..\:/Users/mirum/StudioProjects/WorldNews/app/src/main/res/xml/preferences.xml" value="0.1897644927536232" />
       </map>

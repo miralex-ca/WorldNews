@@ -1,123 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="9dp"
+    android:layout_marginEnd="9dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginEnd="9dp">
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/card_max_width">
 
-        <FrameLayout
-            android:id="@+id/frameLayout"
-            android:layout_width="0dp"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bg_archive_right"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_max="@dimen/card_max_width">
+            android:layout_gravity="end"
+            android:layout_marginEnd="22dp"
+            android:alpha="0.7"
+            android:clickable="false"
+            android:focusable="false"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0"
+            android:text="@string/remove_from_bookmarks"
+            android:textAllCaps="false"
+            android:textColor="?colorTextPrimary"
+            android:textSize="16sp"
+            app:icon="@drawable/ic_bookmark_swipe"
+            app:iconGravity="end"
+            app:iconPadding="14dp"
+            app:iconSize="26dp"
+            app:iconTint="?colorTextPrimary" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/bg_archive_right"
-                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        <View
+            android:id="@+id/bgArchiveLeft"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+    </FrameLayout>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/viewForeground"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:elevation="1dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/_370sdp"
+        tools:alpha="9.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/card_wrap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="14dp">
+
+            <ImageView
+                android:id="@+id/iv_list_image"
+                android:layout_width="73dp"
+                android:layout_height="64dp"
+                android:contentDescription="@string/article_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/ic_menu_gallery" />
+            <View
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="2dp"
+                android:layout_height="64dp"
+                android:id="@+id/iv_image_space"
+                />
+
+            <TextView
+                tools:text="Title"
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toStartOf="@+id/iv_list_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_published"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="22dp"
-                android:alpha="0.7"
-                android:clickable="false"
-                android:focusable="false"
-                android:text="@string/remove_from_bookmarks"
-                android:textColor="?colorTextPrimary"
-                android:textSize="16sp"
-                android:textAllCaps="false"
-                android:fontFamily="sans-serif"
-                android:letterSpacing="0"
-                app:icon="@drawable/ic_bookmark_swipe"
-                app:iconGravity="end"
-                app:iconPadding="14dp"
-                app:iconSize="26dp"
-                app:iconTint="?colorTextPrimary" />
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_published_info"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
-            <View
-                android:id="@+id/bgArchiveLeft"
+
+            <TextView
+                android:id="@+id/tv_published_info"
                 android:layout_width="0dp"
-                android:layout_height="0dp" />
-
-        </FrameLayout>
-
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/viewForeground"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:elevation="1dp"
-            app:cardCornerRadius="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_max="@dimen/_370sdp"
-            tools:alpha="0.0">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/card_wrap"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:paddingStart="16dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="10dp"
-                >
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toStartOf="@+id/iv_list_image"
+                app:layout_constraintStart_toEndOf="@id/tv_published"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
-                <TextView
-                    android:id="@+id/tv_title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_list_image"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_desc"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:ellipsize="end"
-                    android:fontFamily="sans-serif-light"
-                    android:maxLines="2"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_title"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_title" />
-
-                <ImageView
-                    android:id="@+id/iv_list_image"
-                    android:layout_width="80dp"
-                    android:layout_height="70dp"
-                    android:contentDescription="@string/article_image"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/ic_menu_gallery" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/tv_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-light"
+                android:maxLines="3"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_image_space" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

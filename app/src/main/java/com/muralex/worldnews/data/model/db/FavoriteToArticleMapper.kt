@@ -2,6 +2,7 @@ package com.muralex.worldnews.data.model.db
 
 import com.muralex.worldnews.data.model.app.Article
 import com.muralex.worldnews.app.data.EntityMapper
+import com.muralex.worldnews.app.utils.formatToShortDate
 import javax.inject.Inject
 
 class FavoriteToArticleMapper @Inject constructor(): EntityMapper<FavoriteData, Article> {
@@ -13,7 +14,10 @@ class FavoriteToArticleMapper @Inject constructor(): EntityMapper<FavoriteData, 
             text = data.text,
             url = data.url,
             image = data.image,
-            author = data.author
+            source = data.author,
+            publishedAt = data.time.formatToShortDate(),
+            publishedTime = data.time
+
         )
     }
 
@@ -24,7 +28,8 @@ class FavoriteToArticleMapper @Inject constructor(): EntityMapper<FavoriteData, 
             text = data.text,
             url = data.url,
             image = data.image,
-            author = data.author
+            author = data.source,
+            time = data.publishedTime
         )
     }
 

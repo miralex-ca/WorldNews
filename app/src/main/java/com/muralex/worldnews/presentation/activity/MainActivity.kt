@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(), TempToolbarTitleListener,
 
         appBarConfiguration = AppBarConfiguration(
             topLevelDestinationIds = setOf(
-                R.id.nav_home, R.id.nav_bookmarks, R.id.nav_settings),
+                R.id.nav_home, R.id.nav_bookmarks, R.id.nav_settings, R.id.nav_contacts),
             drawerLayout = drawerLayout
         )
 

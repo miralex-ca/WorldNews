@@ -2,6 +2,7 @@ package com.muralex.worldnews.data.model.db
 
 import com.muralex.worldnews.data.model.app.Article
 import com.muralex.worldnews.app.data.EntityMapper
+import com.muralex.worldnews.app.utils.formatToShortDate
 import javax.inject.Inject
 
 class NewsDBMapper @Inject constructor(): EntityMapper<NewsDBData, Article> {
@@ -13,7 +14,9 @@ class NewsDBMapper @Inject constructor(): EntityMapper<NewsDBData, Article> {
             text = data.content,
             url = data.url,
             image = data.urlToImage,
-            author = data.source
+            source = data.source,
+            publishedAt = data.published.formatToShortDate(),
+            publishedTime = data.published
         )
     }
 

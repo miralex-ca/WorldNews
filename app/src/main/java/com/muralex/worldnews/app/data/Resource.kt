@@ -13,12 +13,12 @@ data class Resource<out T>(
         this.info = info
     }
 
-    fun getErrorType() : Constants.DATA_ERRORS {
+    fun getErrorType() : Constants.DataErrors {
         return when (info) {
             is ResourceInfo.ErrorType -> {
                 (info as ResourceInfo.ErrorType).errorType
             }
-            else -> Constants.DATA_ERRORS.GENERIC
+            else -> Constants.DataErrors.GENERIC
         }
     }
 
@@ -47,7 +47,7 @@ data class Resource<out T>(
 }
 
 sealed class ResourceInfo {
-    class ErrorType(val errorType: Constants.DATA_ERRORS) : ResourceInfo()
+    class ErrorType(val errorType: Constants.DataErrors) : ResourceInfo()
     object GenericError: ResourceInfo()
     object ConnectionError : ResourceInfo()
     object RequestError : ResourceInfo()

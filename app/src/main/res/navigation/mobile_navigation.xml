@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_home">
 
@@ -8,6 +9,7 @@
         android:id="@+id/nav_home"
         android:name="com.muralex.worldnews.presentation.fragments.home.HomeFragment"
         android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home"
         >
         <action
             android:id="@+id/action_nav_home_to_detailFragment"
@@ -21,7 +23,9 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.muralex.worldnews.presentation.fragments.detail.DetailFragment"
-        android:label="" >
+        android:label=""
+        tools:layout="@layout/fragment_detail"
+        >
         <argument
             android:name="selected_article"
             app:argType="com.muralex.worldnews.data.model.app.Article" />
@@ -63,8 +67,9 @@
             app:argType="com.muralex.worldnews.data.model.app.Article" />
 
     </fragment>
-
-
-
+    <fragment
+        android:id="@+id/nav_contacts"
+        android:name="com.muralex.worldnews.presentation.fragments.contacts.ContactsFragment"
+        android:label="@string/contacts_title" />
 
 </navigation>

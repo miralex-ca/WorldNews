@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:gravity="center_horizontal"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="@dimen/content_max_width">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_send_feedback"
+                        style="@style/ContactButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/send_feedback"
+                        app:icon="@drawable/ic_contact_send"
+                        app:iconTint="?colorTextPrimary"
+                        app:rippleColor="#3EAAA9A9" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_send_report"
+                        style="@style/ContactButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/report_error"
+                        app:icon="@drawable/ic_contact_report"
+                        app:iconTint="?colorTextPrimary"
+                        app:rippleColor="#3EAAA9A9" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_share"
+                        style="@style/ContactButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/share_app"
+                        app:icon="@drawable/ic_contact_share"
+                        app:iconTint="?colorTextPrimary"
+                        app:rippleColor="#3EAAA9A9" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_rate"
+                        style="@style/ContactButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rate_app"
+                        app:icon="@drawable/ic_contact_rate"
+                        app:iconTint="?colorTextPrimary"
+                        app:rippleColor="#3EAAA9A9" />
+
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -16,4 +16,11 @@
         android:title="@string/share"
         app:showAsAction="never"
         />
+
+    <item
+        android:id="@+id/action_source"
+        android:icon="@drawable/ic_toolbar_share"
+        android:title="@string/open_source"
+        app:showAsAction="never"
+        />
 </menu>

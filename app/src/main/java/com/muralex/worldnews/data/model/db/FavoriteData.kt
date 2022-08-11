@@ -20,6 +20,8 @@ data class FavoriteData (
     @ColumnInfo(name = "url")
     val url: String,
     @ColumnInfo(name = "image")
-    val image: String
+    val image: String,
+    @ColumnInfo(name = "time")
+    val time: Long
 )
 

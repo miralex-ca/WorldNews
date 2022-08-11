@@ -38,6 +38,7 @@ class HomeFragment : Fragment() {
 
     @Inject
     lateinit var settingsHelper: SettingsHelper
+
     @Inject
     lateinit var resourceProvider: ResourceProvider
 
@@ -200,8 +201,6 @@ class HomeFragment : Fragment() {
 
     private fun displayErrorNotification(message: String) {
         val country = settingsHelper.getCountryName()
-
-
 
         val text: String = getString(R.string.load_error_message, country, message)
         val notification = Snackbar.make(

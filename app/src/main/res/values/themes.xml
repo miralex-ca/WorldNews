@@ -5,6 +5,8 @@
     <attr name="appBarOverlay" format="reference" />
     <attr name="popupOverlay" format="reference" />
     <attr name="searchBackground" format="reference" />
+    <attr name="colorStarIcon" format="reference" />
+    <attr name="colorStarIconBord" format="reference" />
 
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
 
@@ -38,6 +40,9 @@
         <item name="alertDialogTheme">@style/AppTheme.AlertDialogTheme</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
+
+        <item name="colorStarIcon">@color/colorStarIcon</item>   <!-- for stars in lists-->
+        <item name="colorStarIconBord">@color/colorStarIconBord</item>
 
 
     </style>

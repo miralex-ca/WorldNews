@@ -1,5 +1,6 @@
 package com.muralex.worldnews.data.api
 
+import com.muralex.worldnews.app.utils.Constants.NEWS_LIST_SIZE
 import com.muralex.worldnews.data.model.api.NewsApiResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -12,7 +13,7 @@ interface NewsApiService {
         @Query("country")
         country: String,
         @Query("pageSize")
-        pageSize: Int = 40
+        pageSize: Int = NEWS_LIST_SIZE
     ): Response<NewsApiResponse>
 
 }

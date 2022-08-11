@@ -10,6 +10,6 @@ class GetNewsUseCase @Inject constructor(
     private val mapper: ArticleDomainToUiMapper,
 ) {
     suspend operator fun invoke(): Resource<List<Article>> {
-        return mapper.mapFromEntity(repository.getNewsArticles())
+        return mapper.mapFromEntity( repository.getNewsArticles()  )
     }
 }

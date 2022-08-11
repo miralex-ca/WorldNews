@@ -11,4 +11,8 @@
 
     <dimen name="card_max_width">@dimen/_370sdp</dimen>
 
+    <dimen name="card_margin_default">@dimen/_card_margin_default</dimen>
+
+    <dimen name="_card_margin_default">4dp</dimen>
+
 </resources>

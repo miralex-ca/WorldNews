@@ -27,14 +27,13 @@ class BookmarksListAdapter : ListAdapter<Article, BookmarksListAdapter.ViewHolde
 
         fun bind(item: Article, onItemClickListener: ((Action, Article) -> Unit)?) {
 
-            if (item.image.isEmpty()) binding.ivListImage.visibility = View.GONE
-
             binding.apply {
 
-                if (item.description.isEmpty()) tvDesc.text = item.author
+                ivListImage.setListItemImage(item.image)
                 tvTitle.text = item.title
                 tvDesc.text = item.description
-                ivListImage.setListItemImage(item.image)
+                tvPublished.text = item.publishedAt
+                tvPublishedInfo.text = item.source
 
                 onItemClickListener?.let { clicker ->
                     cardWrap.setOnClickListener {

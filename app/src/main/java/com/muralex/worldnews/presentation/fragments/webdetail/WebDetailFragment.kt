@@ -32,7 +32,6 @@ class WebDetailFragment : Fragment() {
     lateinit var contactActions: ContactActions
     private var title = ""
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -42,14 +41,12 @@ class WebDetailFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val article = args.selectedArticle
         webView = binding.webview
-        title = article.author
-
+        title = article.source
         setToolbarTitle()
         setMenu(article.url)
         initWebView(article.url)
@@ -130,10 +127,8 @@ class WebDetailFragment : Fragment() {
         }
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
-       // destroyWebView()
         _binding = null
     }
 

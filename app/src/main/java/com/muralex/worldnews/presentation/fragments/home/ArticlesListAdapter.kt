@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.muralex.worldnews.data.model.app.Article
-import com.muralex.worldnews.databinding.ArticleListitemBinding
 import com.muralex.worldnews.app.utils.Constants.Action
+import com.muralex.worldnews.databinding.ListItemArticleBinding
 import com.muralex.worldnews.presentation.utils.setListItemImage
 
 class ArticlesListAdapter : ListAdapter<Article, ArticlesListAdapter.ViewHolder>(ListDiffCallBack()) {
@@ -18,17 +18,16 @@ class ArticlesListAdapter : ListAdapter<Article, ArticlesListAdapter.ViewHolder>
         onItemClickListener = listener
     }
 
-    class ViewHolder (private val binding: ArticleListitemBinding) : RecyclerView.ViewHolder (binding.root) {
+    class ViewHolder (private val binding: ListItemArticleBinding) : RecyclerView.ViewHolder (binding.root) {
         fun bind(item: Article, onItemClickListener: ((Action, Article) -> Unit)?) {
-
-            if (item.image.isEmpty()) binding.ivListImage.visibility = View.GONE
 
             binding.apply {
 
-                if (item.description.isEmpty()) tvDesc.text = item.author
                 tvTitle.text = item.title
-                tvDesc.text = item.description
+                tvPublished.text = item.publishedAt
+                tvPublishedInfo.text = item.source
                 ivListImage.setListItemImage(item.image)
+
                 onItemClickListener?.let { clicker ->
                     cardWrap.setOnClickListener {
                         clicker(Action.Click, item)
@@ -40,7 +39,7 @@ class ArticlesListAdapter : ListAdapter<Article, ArticlesListAdapter.ViewHolder>
         companion object {
             fun from (parent: ViewGroup) : ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ArticleListitemBinding.inflate(layoutInflater, parent, false)
+                val binding = ListItemArticleBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }
@@ -61,6 +60,6 @@ class ListDiffCallBack : DiffUtil.ItemCallback<Article>() {
         return false
     }
     override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-        return false
+        return oldItem == newItem
     }
 }

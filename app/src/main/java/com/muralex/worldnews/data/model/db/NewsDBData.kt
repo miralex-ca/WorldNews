@@ -17,8 +17,8 @@ data class NewsDBData (
     val content: String,
     @ColumnInfo(name = "description")
     val description: String,
-    @ColumnInfo(name = "publishedAt")
-    val publishedAt: String,
+    @ColumnInfo(name = "published")
+    val published: Long,
     @ColumnInfo(name = "source")
     val source: String,
     @ColumnInfo(name = "title")
