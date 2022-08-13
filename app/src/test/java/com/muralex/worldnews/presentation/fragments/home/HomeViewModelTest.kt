@@ -24,7 +24,6 @@ class HomeViewModelTest : BaseUnitTest() {
     private val observer =
         mockk<Observer<HomeViewModel.ViewState>> { every { onChanged(any()) } just Runs }
 
-
     @Test
     fun getNews_getUseCaseInvoke() {
         mockSuccessfulCase()

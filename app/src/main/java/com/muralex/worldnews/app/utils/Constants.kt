@@ -8,7 +8,7 @@ object Constants {
 
     const val DATA_FETCH_ERROR = "unknown_error"
 
-    enum class Action {Click}
+    enum class Action {Click, LongClick}
 
     enum class DataErrors {CONNECTION, SERVER, REQUEST, GENERIC}
 

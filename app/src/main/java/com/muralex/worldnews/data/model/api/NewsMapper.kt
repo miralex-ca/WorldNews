@@ -29,8 +29,8 @@ class NewsMapper : EntityMapper<News, NewsDBData> {
         )
     }
 
-    fun mapFromEntityList(entitiesList: List<News>): List<NewsDBData> {
-        return entitiesList.map { mapFromEntity(it) }
+    fun mapFromEntityList(entitiesList: List<News>?): List<NewsDBData> {
+        return entitiesList?.map { mapFromEntity(it) } ?: emptyList()
     }
 
     private fun processDate(date: String?) : Long {

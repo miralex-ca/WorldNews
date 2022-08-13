@@ -18,11 +18,10 @@ class ArticlesListAdapter : ListAdapter<Article, ArticlesListAdapter.ViewHolder>
         onItemClickListener = listener
     }
 
-    class ViewHolder (private val binding: ListItemArticleBinding) : RecyclerView.ViewHolder (binding.root) {
+    class ViewHolder (val binding: ListItemArticleBinding) : RecyclerView.ViewHolder (binding.root) {
         fun bind(item: Article, onItemClickListener: ((Action, Article) -> Unit)?) {
 
             binding.apply {
-
                 tvTitle.text = item.title
                 tvPublished.text = item.publishedAt
                 tvPublishedInfo.text = item.source

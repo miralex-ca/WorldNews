@@ -19,7 +19,6 @@ class RepositoryImpl(
     override suspend fun updateNewsArticles(): Resource<List<Article>> {
         val update = getFromAPIAndSaveToDB()
         var articles = newsLocalDataSource.getNewsFromDB()
-
         newsCacheDataSource.saveArticlesToCache(articles)
 
         if (update.isError()) {

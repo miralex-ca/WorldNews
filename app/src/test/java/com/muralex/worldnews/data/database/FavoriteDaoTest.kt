@@ -4,12 +4,18 @@ import androidx.arch.core.executor.testing.CountingTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.google.common.truth.Truth
 import com.google.common.truth.Truth.assertThat
+import com.muralex.worldnews.data.model.db.FavoriteData
 import com.muralex.worldnews.data.model.db.NewsDBData
 import com.muralex.worldnews.utils.MainCoroutineScopeRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.last
 import kotlinx.coroutines.test.runTest
 import org.junit.After
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -18,7 +24,7 @@ import java.util.concurrent.TimeUnit
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
-class NewsDaoTest {
+class FavoriteDaoTest  {
 
     @get:Rule
     val countingTaskExecutorRule = CountingTaskExecutorRule()
@@ -27,8 +33,7 @@ class NewsDaoTest {
     val coroutineRule = MainCoroutineScopeRule()
 
     private lateinit var appDatabase: AppDatabase
-    private lateinit var SUT: NewsDao
-
+    private lateinit var SUT: FavoriteDao
 
     @Before
     fun initDb() {
@@ -40,7 +45,7 @@ class NewsDaoTest {
             .allowMainThreadQueries()
             .build()
 
-        SUT = appDatabase.newsDAO
+        SUT = appDatabase.favoriteDao
     }
 
     @After
@@ -51,38 +56,47 @@ class NewsDaoTest {
     }
 
     @Test
-    fun getAllNews_NoDataInserted_isEmpty() = runTest {
-        val data = SUT.getAllNews()
+    fun getAllFavorites_noDataInserted_isEmpty() = runTest {
+        val data = SUT.getAllFavorites().first()
         assertThat(data).isEmpty()
     }
 
     @Test
-    fun insertNewsList_readLastItem_isTheSameUrl() = runTest {
-        SUT.insertNewsList(testDataList)
-        val data = SUT.getAllNews()
-        assertThat(data.size).isEqualTo(testDataList.size)
-        assertThat(data.last().url).isEqualTo(testUrlLast)
+    fun insertFavorite_getAll_lastIsTestData () = runTest {
+        SUT.insertFavorite(testDataItem)
+        val data = SUT.getAllFavorites().first()
+        assertThat(data.last()).isEqualTo(testDataItem)
     }
 
     @Test
-    fun deleteAllNews_afterInsertedItem_getEmptyList() = runTest {
-        SUT.insertNewsList(testDataList)
-        SUT.deleteAllNews()
-        val data = SUT.getAllNews()
-        assertThat(data).isEmpty()
+    fun insertFavorite_deleteByUrl_listNotContainsTestData () = runTest {
+        SUT.insertFavorite(testDataItem)
+        val dataBefore = SUT.getAllFavorites().first()
+        assertThat(dataBefore.contains(testDataItem)).isTrue()
+
+        SUT.deleteByUrl(testUrl)
+        val data = SUT.getAllFavorites().first()
+        assertThat(data.contains(testDataItem)).isFalse()
+    }
+
+    @Test
+    fun checkFavoriteByUrl_notInserted_getGreaterThanZero () = runTest {
+        val result = SUT.checkFavorite(testUrl).first()
+        assertThat(result).isEqualTo(0)
+    }
+
+    @Test
+    fun checkFavoriteByUrl_inserted_getGreaterThanZero () = runTest {
+        SUT.insertFavorite(testDataItem)
+        val result = SUT.checkFavorite(testUrl).first()
+        assertThat(result).isGreaterThan(0)
     }
 
     companion object {
         private const val testUrl = "url"
-        private const val testUrlLast = "url1"
+        private val testDataItem = FavoriteData("", "", "", "",
+            testUrl, "", 0)
 
-        private val testDataItem = NewsDBData(0, "", "", "",
-            0L, "", "title", testUrl, "")
-        private val testDataItem1 = NewsDBData(2, "", "", "",
-            0L, "", "title1", testUrlLast, "")
-
-        private val testDataList: List<NewsDBData> = listOf(testDataItem, testDataItem1)
     }
-
 
 }
