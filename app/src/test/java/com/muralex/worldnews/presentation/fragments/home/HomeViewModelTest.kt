@@ -22,19 +22,19 @@ class HomeViewModelTest : BaseUnitTest() {
     private val updateNewsUseCase: UpdateNewsUseCase = mockk()
     private val expectedError = Resource.error("msg", articlesList)
     private val observer =
-        mockk<Observer<HomeViewModel.ViewState>> { every { onChanged(any()) } just Runs }
+        mockk<Observer<HomeContract.ViewState>> { every { onChanged(any()) } just Runs }
 
     @Test
     fun getNews_getUseCaseInvoke() {
         mockSuccessfulCase()
-        SUT.getNews(COUNTRY_CODE)
+        SUT.setIntent(HomeContract.ViewIntent.GetNews(COUNTRY_CODE))
         coVerify { getNewsUseCase.invoke() }
     }
 
     @Test
     fun update_updateUseCaseInvoke() {
         mockSuccessfulCase()
-        SUT.updateNews()
+        SUT.setIntent(HomeContract.ViewIntent.UpdateNews)
         coVerify { updateNewsUseCase() }
     }
 
@@ -47,14 +47,14 @@ class HomeViewModelTest : BaseUnitTest() {
     @Test
     fun startRefresh_afterGetNews_isFalse() {
         mockSuccessfulCase()
-        SUT.getNews(COUNTRY_CODE)
+        SUT.setIntent(HomeContract.ViewIntent.GetNews(COUNTRY_CODE))
         assertThat(SUT.startRefresh).isFalse()
     }
 
     @Test
     fun startRefresh_afterUpdateNews_isFalse() {
         mockSuccessfulCase()
-        SUT.updateNews()
+        SUT.setIntent(HomeContract.ViewIntent.UpdateNews)
         assertThat(SUT.startRefresh).isFalse()
     }
 
@@ -62,7 +62,7 @@ class HomeViewModelTest : BaseUnitTest() {
     fun differentCountry_updateUseCaseInvoke() {
         mockSuccessfulCase()
         SUT.setNewsCountry("test")
-        SUT.getNews(COUNTRY_CODE)
+        SUT.setIntent(HomeContract.ViewIntent.GetNews(COUNTRY_CODE))
         coVerify { updateNewsUseCase() }
     }
 
@@ -70,11 +70,11 @@ class HomeViewModelTest : BaseUnitTest() {
     fun getNews_success_ViewStateListLoaded() {
         mockSuccessfulCase()
         SUT.viewState.observeForever(observer)
-        SUT.getNews(COUNTRY_CODE)
+        SUT.setIntent(HomeContract.ViewIntent.GetNews(COUNTRY_CODE))
 
         verifySequence {
-            observer.onChanged(HomeViewModel.ViewState.Loading)
-            observer.onChanged(HomeViewModel.ViewState.ListLoaded(expected))
+            observer.onChanged(HomeContract.ViewState.Loading)
+            observer.onChanged(HomeContract.ViewState.ListLoaded(expected))
         }
     }
 
@@ -82,11 +82,11 @@ class HomeViewModelTest : BaseUnitTest() {
     fun updateNews_success_ViewStateListRefreshed() {
         mockSuccessfulCase()
         SUT.viewState.observeForever(observer)
-        SUT.updateNews()
+        SUT.setIntent(HomeContract.ViewIntent.UpdateNews)
 
         verifySequence {
-            observer.onChanged(HomeViewModel.ViewState.Loading)
-            observer.onChanged(HomeViewModel.ViewState.ListRefreshed(expected))
+            observer.onChanged(HomeContract.ViewState.Loading)
+            observer.onChanged(HomeContract.ViewState.ListRefreshed(expected))
         }
     }
 
@@ -94,11 +94,11 @@ class HomeViewModelTest : BaseUnitTest() {
     fun getNews_error_ViewStateListLoadFailure() {
         mockErrorCase()
         SUT.viewState.observeForever(observer)
-        SUT.getNews(COUNTRY_CODE)
+        SUT.setIntent(HomeContract.ViewIntent.GetNews(COUNTRY_CODE))
 
         verifySequence {
-            observer.onChanged(HomeViewModel.ViewState.Loading)
-            observer.onChanged(HomeViewModel.ViewState.ListLoadFailure(expectedError))
+            observer.onChanged(HomeContract.ViewState.Loading)
+            observer.onChanged(HomeContract.ViewState.ListLoadFailure(expectedError))
         }
     }
 
@@ -106,11 +106,11 @@ class HomeViewModelTest : BaseUnitTest() {
     fun updateNews_error_ViewStateListLoadFailure() {
         mockErrorCase()
         SUT.viewState.observeForever(observer)
-        SUT.updateNews()
+        SUT.setIntent(HomeContract.ViewIntent.UpdateNews)
 
         verifySequence {
-            observer.onChanged(HomeViewModel.ViewState.Loading)
-            observer.onChanged(HomeViewModel.ViewState.ListLoadFailure(expectedError))
+            observer.onChanged(HomeContract.ViewState.Loading)
+            observer.onChanged(HomeContract.ViewState.ListLoadFailure(expectedError))
         }
     }
 

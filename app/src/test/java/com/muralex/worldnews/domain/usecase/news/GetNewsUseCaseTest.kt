@@ -47,8 +47,6 @@ class GetNewsUseCaseTest : BaseUnitTest() {
     }
 
 
-
-
 }
 
 

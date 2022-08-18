@@ -1,6 +1,6 @@
 package com.muralex.worldnews.presentation.fragments.home
 
-import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,8 +9,12 @@ import com.muralex.worldnews.app.data.Resource
 import com.muralex.worldnews.app.data.Status
 import com.muralex.worldnews.domain.usecase.news.GetNewsUseCase
 import com.muralex.worldnews.domain.usecase.news.UpdateNewsUseCase
+import com.muralex.worldnews.presentation.fragments.home.HomeContract.ModelAction
+import com.muralex.worldnews.presentation.fragments.home.HomeContract.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import java.lang.Exception
 import javax.inject.Inject
 
@@ -25,42 +29,61 @@ class HomeViewModel @Inject constructor(
     val startRefresh: Boolean
         get() = _startRefresh
 
-    val viewState = MutableLiveData<ViewState>()
+    private val _viewState = MutableLiveData<ViewState>()
+    val viewState: LiveData<ViewState>
+        get() = _viewState
 
-    fun getNews(country: String) {
-        val fetchDataType = if (isDifferentCountry(country))  UPDATE_TYPE
-        else GET_TYPE
-        setNewsCountry(country)
+    private val _viewEffect : Channel<HomeContract.ViewEffect> = Channel()
+    val viewEffect = _viewEffect.receiveAsFlow()
 
-        getData(fetchDataType)
+    fun setIntent(intent: HomeContract.ViewIntent) {
+        val action = HomeContract.intentToAction(intent)
+        handleModelAction(action)
     }
 
-    fun updateNews() {
-        getData(UPDATE_TYPE)
+    private fun handleModelAction(modelAction: ModelAction) {
+        when (modelAction) {
+            is ModelAction.GetNews -> {
+                val selectedCountry = modelAction.country
+                val fetchDataType = if (isDifferentCountry(selectedCountry)) UPDATE_TYPE
+                else GET_TYPE
+                setNewsCountry(selectedCountry)
+                getData(fetchDataType)
+            }
+            ModelAction.UpdateNews -> {
+                getData(UPDATE_TYPE)
+            }
+        }
     }
 
     private fun getData(type: Int) {
         _startRefresh = false
         viewModelScope.launch(Dispatchers.IO) {
-            viewState.postValue(ViewState.Loading)
+            _viewState.postValue(ViewState.Loading)
 
             try {
                 val response = getDataFromUseCase(type)
                 when (response.status) {
-                    Status.LOADING -> viewState.postValue(ViewState.Loading)
+                    Status.LOADING -> _viewState.postValue(ViewState.Loading)
                     Status.ERROR -> {
-                        viewState.postValue(ViewState.ListLoadFailure(response))
+                        _viewState.postValue(ViewState.ListLoadFailure(response))
+                        setEffect(HomeContract.ViewEffect.ShowErrorSnackBar(response.message.toString()))
                     }
                     Status.SUCCESS -> {
-                        if (type == GET_TYPE) viewState.postValue(ViewState.ListLoaded(response))
-                        else viewState.postValue(ViewState.ListRefreshed(response))
+                        if (type == GET_TYPE) _viewState.postValue(ViewState.ListLoaded(response))
+                        else _viewState.postValue(ViewState.ListRefreshed(response))
                     }
                 }
             } catch (e: Exception) {
                 val resource = Resource.error(e.message.toString(), null)
-                viewState.postValue(ViewState.ListLoadFailure(resource))
+                _viewState.postValue(ViewState.ListLoadFailure(resource))
+                setEffect(HomeContract.ViewEffect.ShowErrorSnackBar(resource.message.toString()))
             }
         }
+    }
+
+    private suspend fun setEffect(effect: HomeContract.ViewEffect) {
+        _viewEffect.send(effect)
     }
 
     fun setNewsCountry(country: String) {
@@ -83,12 +106,5 @@ class HomeViewModel @Inject constructor(
         const val COUNTRY_START = "unknown"
     }
 
-    sealed class ViewState {
-        object Loading : ViewState()
-        object EmptyList : ViewState()
-        data class ListLoaded(val data: Resource<List<Article>>) : ViewState()
-        data class ListRefreshed(val data: Resource<List<Article>>) : ViewState()
-        data class ListLoadFailure(val data: Resource<List<Article>>) : ViewState()
-    }
-
 }
+
