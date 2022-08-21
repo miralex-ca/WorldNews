@@ -35,7 +35,6 @@ class BookmarksContract {
     }
 
     sealed class ViewState : UiState {
-        object Loading : ViewState()
         object EmptyList : ViewState()
         data class ListLoaded(val data: Resource<List<Article>>) : ViewState()
         data class ListLoadFailure(val data: Resource<List<Article>>) : ViewState()

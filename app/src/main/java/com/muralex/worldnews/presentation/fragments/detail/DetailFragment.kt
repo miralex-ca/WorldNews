@@ -92,7 +92,6 @@ class DetailFragment : Fragment() {
         }
     }
 
-
     private fun setToolbarTitle() {
         (requireActivity() as AppCompatActivity).supportActionBar?.title = title
     }

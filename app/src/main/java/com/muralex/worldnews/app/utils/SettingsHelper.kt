@@ -7,7 +7,6 @@ import com.muralex.worldnews.R
 import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 
-
 class SettingsHelper (private val context: Context) {
 
     private var settings: SharedPreferences? = null
@@ -49,7 +48,7 @@ class SettingsHelper (private val context: Context) {
 
     fun isStartRefreshEnabled() : Boolean {
         val default = true
-        return settings?.getBoolean( context.getString(R.string.swipe_refresh_key), default) ?: default
+        return settings?.getBoolean( context.getString(R.string.start_refresh_key), default) ?: default
     }
 
     fun isSwipeDownEnabled() : Boolean {

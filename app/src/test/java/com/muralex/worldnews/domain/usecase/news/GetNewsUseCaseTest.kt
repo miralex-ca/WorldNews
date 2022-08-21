@@ -30,7 +30,6 @@ class GetNewsUseCaseTest : BaseUnitTest() {
         verify(repository, times(1)).getNewsArticles()
     }
 
-
     @Test
     fun getNewsUseCase_invoke_expectedDataFromRepository() = runTest {
 
